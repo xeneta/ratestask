@@ -31,14 +31,13 @@ Individual daily prices between ports, in USD.
 * 5-character Destination Port Code
 * The day on which the price is valid on
 * The price in USD
- 
 
 Assignment
 ----------
 
 Develop an HTTP-based API capable of executing the tasks described
 below. Our stack is based on Flask, but you are free to choose
-anything you like.
+anything you like. All data returned is expected to be in JSON format.
 
 GET requirements
 ================
@@ -51,12 +50,13 @@ GET requirements
    destination_code* or *origin_slug, destination_slug* making it
    possible to query for average prices for groups of ports.
    
-3. Make it possible to not return average prices for days on which
-   there are less than 3 prices.
+3. Make it possible to return an empty value for days on which
+   there are less than 3 prices in total.
 
 4. If there are not enough prices to get an average for *at least one*
-   day in the selected range, follow the region hierarchy "up" until
-   you can find enough prices to aggregate.
+   day in the selected range, include more ports by following the
+   region hierarchy "up", until you can find enough prices
+   to aggregate.
    
 POST requirements
 =================
@@ -77,8 +77,18 @@ POST requirements
 Extra details
 =============
 
+* Keep your solution in a Version Control System of your
+  choice. Provide the solution as a public repository that can be
+  easily cloned by our development team.
+  
+* Provide any instructions needed to set up the system in `README.md`.
+
+* Ensure the API handles errors and edge cases properly.
+
 * Use dates in YYYY-MM-DD format for the API. There is no need of more
   complicated date processing.
+  
+
 
 Initial setup
 -------------
@@ -88,7 +98,7 @@ Postgres instance populated with the assignment data. You don't have
 to use it, but you might find it convenient. If you decide to use
 something else, make sure to include instructions on how to set it up.
 
-You can execute the provided dockerfile by running:
+You can execute the provided Dockerfile by running:
 
 ```bash
 docker build -t ratestask .
