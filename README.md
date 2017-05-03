@@ -3,7 +3,6 @@
 We are providing you with a small set of simplified real-world data. A
 database dump is provided that includes the following information:
 
-
 ## Ports
 
 Information about ports, including:
@@ -12,15 +11,13 @@ Information about ports, including:
 * Port Name
 * Slug that describes which Region does the port belong in
 
-
 ## Regions
 
 A hierarchy of Regions, including:
 
-* Machine-readable form of the Region name
+* Slug - a machine-readable form of the Region name
 * The name of the Region
 * Slug that describes which parent Region does the Region belong in
-
 
 ## Prices
 
@@ -31,14 +28,11 @@ Individual daily prices between ports, in USD.
 * The day on which the price is valid on
 * The price in USD
 
-
 # Assignment
-
 
 Develop an HTTP-based API capable of executing the tasks described
 below. Our stack is based on Flask, but you are free to choose
 anything you like. All data returned is expected to be in JSON format.
-
 
 ## GET requirements
 
@@ -58,7 +52,6 @@ anything you like. All data returned is expected to be in JSON format.
    region hierarchy "up", until you can find enough prices
    to aggregate.
 
-
 ## POST requirements
 
 1. Implement an API endpoint where you can upload a price, including
@@ -74,7 +67,6 @@ anything you like. All data returned is expected to be in JSON format.
    prices. Consider what would happen if the request is very large and
    ran on a system with very low timeouts.
 
-
 # Extra details
 
 * Keep your solution in a Version Control System of your
@@ -87,6 +79,14 @@ anything you like. All data returned is expected to be in JSON format.
 
 * Use dates in YYYY-MM-DD format for the API. There is no need of more
   complicated date processing.
+
+* Feel free to modify the database schema in any way you like, if you
+  find that necessary.
+  
+* If you have any questions, don't hesitate to ask us.
+  
+* We would like your feedback - Let us know how much time you spent on
+  the task or about any difficulties you run into.
 
 
 # Initial setup
@@ -116,3 +116,7 @@ default user 'postgres' and no password.
 ```bash
 psql -h 172.17.0.1 -U postgres
 ```
+
+Keep in mind that any data written in the Docker container will
+disappear when it shuts down. The next time you run it, it will start
+with a clear state.
