@@ -21,7 +21,7 @@ A hierarchy of Regions, including:
 
 ## Prices
 
-Individual daily prices between ports, in USD. 
+Individual daily prices between ports, in USD.
 
 * 5-character Origin Port Code
 * 5-character Destination Port Code
@@ -34,38 +34,108 @@ Develop an HTTP-based API capable of executing the tasks described
 below. Our stack is based on Flask, but you are free to choose
 anything you like. All data returned is expected to be in JSON format.
 
+We provide two tasks: each consists of several parts with progressive complexity.
+We require that at least 2 parts of each task are implemented, but you are welcome to implement more.
+Please display us your knowledge of raw SQL (as opposed to using ORM querying tools) in at least one part.
+
+
 ## GET requirements
 
-1. Implement an API endpoint that takes the following parameters:
-   *date_from, date_to, origin_code, destination_code* and returns a
-   list with the average price on this route for each day.
+### Part 1
 
-2. Extend the API endpoint so that it could take either *origin_code,
-   destination_code* or *origin_slug, destination_slug* making it
-   possible to query for average prices for groups of ports.
+Implement an API endpoint that takes the following parameters:
+*date_from, date_to, origin, destination* and returns a
+list with the average prices for each day on a route between Port Codes *origin* and *destination*.
 
-3. Make it possible to return an empty value for days on which
-   there are less than 3 prices in total.
+    curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=NLRTM
 
-4. If there are not enough prices to get an average for *at least one*
-   day in the selected range, include more ports by following the
-   region hierarchy "up", until you can find enough prices
-   to aggregate.
+    [
+        {
+            "day": "2016-01-01",
+            "average_price": 125
+        },
+        {
+            "day": "2016-01-02",
+            "average_price": 135
+        },
+        ...
+    ]
+
+
+### Part 2
+
+Extend the API endpoint so that *origin, destination* params accept either Port Codes or Region slugs, making it
+possible to query for average prices per day between geographic groups of ports.
+
+    curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
+
+    [
+        {
+            "day": "2016-01-01",
+            "average_price": 129
+        },
+        {
+            "day": "2016-01-02",
+            "average_price": 139
+        },
+        ...
+    ]
+
+
+### Part 3
+
+Make API endpoint return an empty value (JSON null) for days on which
+there are less than 3 prices in total.
+
+    curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
+
+    [
+        {
+            "day": "2016-01-01",
+            "average_price": 129
+        },
+        {
+            "day": "2016-01-02",
+            "average_price": null
+        },
+        {
+            "day": "2016-01-03",
+            "average_price": 215
+        },
+        ...
+    ]
+
+### Part 4
+
+If there are not enough prices to get an average for *at least one*
+day in the selected range (none of the days within the query limits contain at least 3 prices),
+include more ports by following the region hierarchy "up", until you can find enough prices to aggregate.
+
 
 ## POST requirements
 
-1. Implement an API endpoint where you can upload a price, including
-   the following parameters: *date_from, date_to, origin_code,
-   destination_code, price*
 
-2. Extend that API endpoint so that it could accept prices in
-   different currencies. Convert into USD before
-   saving. [https://openexchangerates.org/](Openexchangerates) provide
-   a free API for retrieving currency exchange information.
+### Part 1
 
-3. Create another API endpoint that is able to take in a batch of new
-   prices. Consider what would happen if the request is very large and
-   ran on a system with very low timeouts.
+Implement an API endpoint where you can upload a price, including
+the following parameters: *date_from, date_to, origin_code,
+destination_code, price*
+
+
+### Part 2
+
+Extend that API endpoint so that it could accept prices in
+different currencies. Convert into USD before
+saving. [https://openexchangerates.org/](Openexchangerates) provide
+a free API for retrieving currency exchange information.
+
+
+### Part 3
+
+Create another API endpoint that is able to take in a batch of new
+prices. Consider what would happen if the request is very large and
+ran on a system with very low timeouts.
+
 
 # Extra details
 
@@ -80,11 +150,10 @@ anything you like. All data returned is expected to be in JSON format.
 * Use dates in YYYY-MM-DD format for the API. There is no need of more
   complicated date processing.
 
-* Feel free to modify the database schema in any way you like, if you
-  find that necessary.
-  
+* You are encouraged to modify or extend the database schema if you think a different model fits task better.
+
 * If you have any questions, don't hesitate to ask us.
-  
+
 * We would like your feedback - Let us know how much time you spent on
   the task or about any difficulties you run into.
 
