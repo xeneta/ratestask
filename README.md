@@ -1,9 +1,11 @@
-# Data definition
+# Development section 
+
+## Data definition
 
 We are providing you with a small set of simplified real-world data. A
 database dump is provided that includes the following information:
 
-## Ports
+### Ports
 
 Information about ports, including:
 
@@ -11,7 +13,7 @@ Information about ports, including:
 * Port Name
 * Slug that describes which Region does the port belong in
 
-## Regions
+### Regions
 
 A hierarchy of Regions, including:
 
@@ -19,7 +21,7 @@ A hierarchy of Regions, including:
 * The name of the Region
 * Slug that describes which parent Region does the Region belong in
 
-## Prices
+### Prices
 
 Individual daily prices between ports, in USD.
 
@@ -28,7 +30,7 @@ Individual daily prices between ports, in USD.
 * The day on which the price is valid on
 * The price in USD
 
-# Assignment
+## Assignment
 
 Develop an HTTP-based API capable of executing the tasks described
 below. Our stack is based on Flask, but you are free to choose
@@ -37,9 +39,7 @@ anything you like. All data returned is expected to be in JSON format.
 Please display us your knowledge of raw SQL (as opposed to using ORM querying tools) in at least one part.
 
 
-## GET requirements
-
-### Part 1
+### GET requirements
 
 Implement an API endpoint that takes the following parameters:
 *date_from, date_to, origin, destination* and returns a list with the
@@ -62,57 +62,13 @@ per day between geographic groups of ports.
         ...
     ]
 
-
-### Part 2
-
-Make a second API endpoint return an empty value (JSON null) for days
-on which there are less than 3 prices in total.
-
-    curl http://127.0.0.1/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
-
-    [
-        {
-            "day": "2016-01-01",
-            "average_price": 129
-        },
-        {
-            "day": "2016-01-02",
-            "average_price": null
-        },
-        {
-            "day": "2016-01-03",
-            "average_price": 215
-        },
-        ...
-    ]
-
-## POST requirements
-
-### Part 1
+### POST requirements
 
 Implement an API endpoint where you can upload a price, including
 the following parameters: *date_from, date_to, origin_code,
 destination_code, price*
 
-
-### Part 2
-
-Extend that API endpoint so that it could accept prices in
-different currencies. Convert into USD before
-saving. [https://openexchangerates.org/](Openexchangerates) provides
-a free API for retrieving currency exchange information.
-
-
-## Batch processing
-
-Imagine you need to receive and update big batches of new prices,
-ranging within tens of thousands of items, conforming to a similar
-format. Describe, using a couple of paragraphs, how would you design
-the system to be able to handle those requirements. What factors do
-you need to take into consideration?
-
-
-# Extra details
+## Extra details
 
 * Keep your solution in a Version Control System of your
   choice. *Provide the solution as a public repository that can be
@@ -133,7 +89,7 @@ you need to take into consideration?
   the task or about any difficulties you run into.
 
 
-# Initial setup
+## Initial setup
 
 We have provided a simple Docker setup for you, which will start a
 Postgres instance populated with the assignment data. You don't have
@@ -161,6 +117,41 @@ default user 'postgres' and no password.
 psql -h 172.17.0.1 -U postgres
 ```
 
-Keep in mind that any data written in the Docker container will
-disappear when it shuts down. The next time you run it, it will start
-with a clear state.
+# Theoretical section
+
+In this section we will provide a description of a largely extended
+version of the service implemented above. Provide answers at a
+high-level, using a couple of paragraphs for each question.
+
+## Service definition
+
+Imagine that for this service you need to receive and update big
+batches of new prices, ranging within tens of thousands of items,
+conforming to a similar format. Every batch of items needs to be
+processed together, either all items go in, or none of them does.
+
+Both the incoming data updates and requests for data can be highly
+sporadic - there might be large periods without much activity,
+followed by periods of heavy activity.
+
+Being a paid service, high availability is very much a requirement.
+
+How would you design the system? Provide a high-level diagram, along
+with a few paragraphs describing the choices you've made and what
+factors do you need to take into consideration?
+
+## Additional questions
+
+Please provide a couple of paragraphs, answering how you would
+structure and scale the system in at least *at least* one of the
+following situations:
+
+1. The batch updates have started to become very large, but the
+   requirements for their processing time are strict. 
+   
+2. Code updates need to be pushed out frequently. This needs to be
+   done without the risk of stopping an update already being
+   processed, nor a data response being lost.
+
+3. For development and staging purposes, you need to start up a number
+   of scaled-down versions of the system.
