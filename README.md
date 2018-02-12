@@ -34,8 +34,6 @@ Develop an HTTP-based API capable of executing the tasks described
 below. Our stack is based on Flask, but you are free to choose
 anything you like. All data returned is expected to be in JSON format.
 
-We provide two tasks: each consists of several parts with progressive complexity.
-We require that at least 2 parts of each task are implemented, but you are welcome to implement more.
 Please display us your knowledge of raw SQL (as opposed to using ORM querying tools) in at least one part.
 
 
@@ -44,28 +42,11 @@ Please display us your knowledge of raw SQL (as opposed to using ORM querying to
 ### Part 1
 
 Implement an API endpoint that takes the following parameters:
-*date_from, date_to, origin, destination* and returns a
-list with the average prices for each day on a route between Port Codes *origin* and *destination*.
-
-    curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=NLRTM
-
-    [
-        {
-            "day": "2016-01-01",
-            "average_price": 125
-        },
-        {
-            "day": "2016-01-02",
-            "average_price": 135
-        },
-        ...
-    ]
-
-
-### Part 2
-
-Extend the API endpoint so that *origin, destination* params accept either Port Codes or Region slugs, making it
-possible to query for average prices per day between geographic groups of ports.
+*date_from, date_to, origin, destination* and returns a list with the
+average prices for each day on a route between Port Codes *origin* and
+*destination*. Both *origin, destination* params accept either Port
+Codes or Region slugs, making it possible to query for average prices
+per day between geographic groups of ports.
 
     curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
 
@@ -82,12 +63,12 @@ possible to query for average prices per day between geographic groups of ports.
     ]
 
 
-### Part 3
+### Part 2
 
-Make API endpoint return an empty value (JSON null) for days on which
-there are less than 3 prices in total.
+Make a second API endpoint return an empty value (JSON null) for days
+on which there are less than 3 prices in total.
 
-    curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
+    curl http://127.0.0.1/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
 
     [
         {
@@ -105,15 +86,7 @@ there are less than 3 prices in total.
         ...
     ]
 
-### Part 4
-
-If there are not enough prices to get an average for *at least one*
-day in the selected range (none of the days within the query limits contain at least 3 prices),
-include more ports by following the region hierarchy "up", until you can find enough prices to aggregate.
-
-
 ## POST requirements
-
 
 ### Part 1
 
@@ -126,22 +99,24 @@ destination_code, price*
 
 Extend that API endpoint so that it could accept prices in
 different currencies. Convert into USD before
-saving. [https://openexchangerates.org/](Openexchangerates) provide
+saving. [https://openexchangerates.org/](Openexchangerates) provides
 a free API for retrieving currency exchange information.
 
 
-### Part 3
+## Batch processing
 
-Create another API endpoint that is able to take in a batch of new
-prices. Consider what would happen if the request is very large and
-ran on a system with very low timeouts.
+Imagine you need to receive and update big batches of new prices,
+ranging within tens of thousands of items, conforming to a similar
+format. Describe, using a couple of paragraphs, how would you design
+the system to be able to handle those requirements. What factors do
+you need to take into consideration?
 
 
 # Extra details
 
 * Keep your solution in a Version Control System of your
-  choice. Provide the solution as a public repository that can be
-  easily cloned by our development team.
+  choice. *Provide the solution as a public repository that can be
+  easily cloned by our development team.*
 
 * Provide any instructions needed to set up the system in `README.md`.
 
