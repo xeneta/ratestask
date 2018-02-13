@@ -127,7 +127,7 @@ high-level, using a couple of paragraphs for each question.
 
 Imagine that for this service you need to receive and insert big
 batches of new prices, ranging within tens of thousands of items,
-conforming to a similar format. Every batch of items needs to be
+conforming to a similar format. Each batch of items needs to be
 processed together, either all items go in, or none of them does.
 
 Both the incoming data updates and requests for data can be highly
@@ -143,14 +143,14 @@ factors do you need to take into consideration?
 ## Additional questions
 
 Please provide a couple of paragraphs, answering how you would
-structure and scale the system in at least *at least* one of the
+structure and scale the system in *at least* one of the
 following situations:
 
 1. The batch updates have started to become very large, but the
    requirements for their processing time are strict. 
    
 2. Code updates need to be pushed out frequently. This needs to be
-   done without the risk of stopping an update already being
+   done without the risk of stopping a data update already being
    processed, nor a data response being lost.
 
 3. For development and staging purposes, you need to start up a number
