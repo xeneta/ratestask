@@ -43,7 +43,7 @@ Please display us your knowledge of raw SQL (as opposed to using ORM querying to
 
 Implement an API endpoint that takes the following parameters:
 *date_from, date_to, origin, destination* and returns a list with the
-average prices for each day on a route between Port Codes *origin* and
+average prices for each day on a route between *origin* and
 *destination*. Both *origin, destination* params accept either Port
 Codes or Region slugs, making it possible to query for average prices
 per day between geographic groups of ports.
@@ -125,7 +125,7 @@ high-level, using a couple of paragraphs for each question.
 
 ## Service definition
 
-Imagine that for this service you need to receive and update big
+Imagine that for this service you need to receive and insert big
 batches of new prices, ranging within tens of thousands of items,
 conforming to a similar format. Every batch of items needs to be
 processed together, either all items go in, or none of them does.
