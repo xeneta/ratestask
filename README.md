@@ -136,22 +136,27 @@ followed by periods of heavy activity.
 
 Being a paid service, high availability is very much a requirement.
 
-How would you design the system? Provide a high-level diagram, along
-with a few paragraphs describing the choices you've made and what
-factors do you need to take into consideration?
+- How would you design the system?
+- What parts of the system do you expect to become the bottlenecks as the load grows?
+- How can those bottlenecks be addressed in the future?
+
+Provide a high-level diagram, along with a few paragraphs describing the choices you've made and what factors do you need to take into consideration.
 
 ## Additional questions
 
-Please provide a couple of paragraphs, answering how you would
-structure and scale the system in *at least* one of the
-following situations:
+Here are a few possible scenarios where the system requirements change or the new functionality is required:
 
 1. The batch updates have started to become very large, but the
-   requirements for their processing time are strict. 
-   
+   requirements for their processing time are strict.
+
 2. Code updates need to be pushed out frequently. This needs to be
    done without the risk of stopping a data update already being
    processed, nor a data response being lost.
 
 3. For development and staging purposes, you need to start up a number
    of scaled-down versions of the system.
+
+Please address *at least* one of the situations. Please describe:
+
+- Which parts of the system are the bottlenecks or problems that might make it incompatible with the new requirements?
+- How would you restructure and scale the system to address those?
