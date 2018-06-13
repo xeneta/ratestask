@@ -4,7 +4,7 @@
 
 Provided are two simplified parts of the same application environment: A database and an API service.
 
-Your task is to automate setting up the development environment in a reliable and testable manner. The environment will require
+Your task is to automate setting up the development environment in a reliable and testable manner. 
 
 The code should come with instructions on how to run it and deploy it to arbitrary targets.
 
