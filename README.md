@@ -72,7 +72,7 @@ The output should be something like this:
          "day" : "2016-01-30",
          "price" : 1154.33333333333
       },
-      ....
+      ...
    ]
 }
 ```
@@ -89,19 +89,21 @@ The output should be something like this:
 
 * List and describe the tool(s) used, and why they were chosen for the task.
 
+* The configuration file `rates/config.py` has some defaults that will most likely change depending on the solution. It would be beneficial to have a way of more dynamically pass in config values.
+
 * Provide any instructions needed to run the automation solution in `README.md`.
 
-* If you have any questions, don't hesitate to ask us.
+* If you have any questions, please don't hesitate to ask us.
 
 * We would like your feedback - Let us know how much time you spent on the task or about any difficulties you run into.
 
 # Theoretical section
 In this section we are seeking high-level answers, using a couple of paragraphs for each question.
 
-## Setting the task into production
+## Deploying the service for production
 Consider the following statements:
 
-* Please describe what you would like to change — if anything —  to make the provided solution properly scaleable and deployable for a production environment.
+* Please describe what you would like to change — if anything —  to make the provided solution properly scalable and deployable for a production environment.
 * Are there any caveats or shortcomings a developer using the solution would need to know.
 
 ## Extended service
