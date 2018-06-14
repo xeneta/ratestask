@@ -96,12 +96,6 @@ The output should be something like this:
 # Theoretical section
 In this section we are seeking high-level answers, using a couple of paragraphs for each question.
 
-## Deploying the service for production
-Consider the following statements:
-
-* Please describe what you would like to change — if anything —  to make the provided solution properly scalable and deployable for a production environment.
-* Are there any caveats or shortcomings a developer using the solution would need to know.
-
 ## Extended service
 
 Imagine that for providing data to fuel this service, you need to receive and insert big batches of new prices, ranging within tens of thousands of items, conforming to a similar format. Each batch of items needs to be processed together, either all items go in, or none of them does.
