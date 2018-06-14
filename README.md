@@ -53,15 +53,30 @@ The API should now be running on [http://localhost:3000](http://localhost:3000).
 
 ### 3. Test the application
 
+Get average rates between ports:
 ```
-curl http://localhost:3000/
+curl "http://127.0.0.1:3000/rates?date_from=2016-01-01&date_to=2016-01-31&orig_code=CNGGZ&dest_code=EETLL"
 ```
 
 The output should be something like this:
+```
+{
+   "rates" : [
+      {
+         "count" : 3,
+         "day" : "2016-01-31",
+         "price" : 1154.33333333333
+      },
+      {
+         "count" : 3,
+         "day" : "2016-01-30",
+         "price" : 1154.33333333333
+      },
+      ....
+   ]
+}
+```
 
-```
-{"temporary": "value"}
-```
 
 ## Extra details
 
