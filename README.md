@@ -4,7 +4,10 @@
 
 Provided are two simplified parts of the same application environment: A database and an API service.
 
-Your task is to automate setting up the development environment in a reliable and testable manner. 
+Your task is to automate setting up the development environment in a reliable and testable manner.
+Your task is to automate setting up the development environment in a reliable and testable manner.
+
+The goal is to end up with a command - or a limited set of commands - that would install the different environments given any specifications described.
 
 The code should come with instructions on how to run it and deploy it to arbitrary targets.
 
@@ -15,20 +18,30 @@ There’s an SQL dump in `db/rates.sql` that needs to be loaded into a PostgreSQ
 After installing the database, the data can be imported through:
 
 ```
-ls # Placeholder command to restore to the running database
+createdb rates
+psql -h localhost -U postgres < db/rates.sql
 ```
 
 You can verify that the database is running through:
 
 ```
-psql -h localhost -U postgres
+psql -h localhost -U postgres -c "SELECT 'alive'"
+```
+
+The output should be something like:
+
+```
+ ?column?
+----------
+ alive
+(1 row)
 ```
 
 ## Running the API service
 
 Start from the `rates` folder.
 
-1. Install prerequisites:
+### 1. Install prerequisites
 
 ```
 DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y python-pip
@@ -36,14 +49,14 @@ pip install -U gunicorn
 pip install -Ur requirements.txt
 ```
 
-2. Run the application
+### 2. Run the application
 ```
 gunicorn -b :3000 wsgi
 ```
 
 The API should now be running on [http://localhost:3000](http://localhost:3000).
 
-3. Test the application
+### 3. Test the application
 
 ```
 curl http://localhost:3000/
@@ -60,20 +73,26 @@ The output should be something like this:
 * Keep your solution in a Version Control System of your
   choice. *Provide the solution as a public repository that can be easily cloned by our development team.*
 
+* The specifications and requirements can change over time, and this needs to be taken into account when designing the solution. Examples: there could be more source code files added; line 2 of any given file might change in the future, and so forth.
+
+* To allow this to sanely run on any machine, it should be possible to provide target or configuration overrides.
+
+* List and describe the tool(s) used, and why they were chosen for the task.
+
 * Provide any instructions needed to run the automation solution in `README.md`.
 
 * If you have any questions, don't hesitate to ask us.
 
 * We would like your feedback - Let us know how much time you spent on the task or about any difficulties you run into.
 
-
 # Theoretical section
 In this section we are seeking high-level answers, using a couple of paragraphs for each question.
 
 ## Setting the task into production
 Consider the following statements:
-- Please describe what you would like to change — if anything —  to make the provided solution properly scaleable and deployable for a production environment.
-- Are there any caveats or shortcomings a developer using the solution would need to know.
+
+* Please describe what you would like to change — if anything —  to make the provided solution properly scaleable and deployable for a production environment.
+* Are there any caveats or shortcomings a developer using the solution would need to know.
 
 ## Extended service
 
@@ -83,9 +102,9 @@ Both the incoming data updates and requests for data can be highly sporadic - th
 
 Being a paid service, high availability is very much a requirement.
 
-- How would you design the system?
-- What parts of the system do you expect to become the bottlenecks as the load grows?
-- How can those bottlenecks be addressed in the future?
+* How would you design the system?
+* How would you set up monitoring to identify bottlenecks as the load grows?
+* How can those bottlenecks be addressed in the future?
 
 Provide a high-level diagram, along with a few paragraphs describing the choices you've made and what factors do you need to take into consideration.
 
@@ -93,8 +112,7 @@ Provide a high-level diagram, along with a few paragraphs describing the choices
 
 Here are a few possible scenarios where the system requirements change or the new functionality is required:
 
-1. The batch updates have started to become very large, but the
-   requirements for their processing time are strict.
+1. The batch updates have started to become very large, but the requirements for their processing time are strict.
 
 2. Code updates need to be pushed out frequently. This needs to be done without the risk of stopping a data update already being processed, nor a data response being lost.
 
