@@ -83,8 +83,6 @@ The output should be something like this:
 * Keep your solution in a Version Control System of your
   choice. *Provide the solution as a public repository that can be easily cloned by our development team.*
 
-* The specifications and requirements can change over time, and this needs to be taken into account when designing the solution. Examples: there could be more source code files added; line 2 of any given file might change in the future, and so forth.
-
 * To allow this to sanely run on any machine, it should be possible to provide target or configuration overrides.
 
 * List and describe the tool(s) used, and why they were chosen for the task.
@@ -94,8 +92,6 @@ The output should be something like this:
 * Provide any instructions needed to run the automation solution in `README.md`.
 
 * If you have any questions, please don't hesitate to ask us.
-
-* We would like your feedback - Let us know how much time you spent on the task or about any difficulties you run into.
 
 # Theoretical section
 In this section we are seeking high-level answers, using a couple of paragraphs for each question.
