@@ -2,13 +2,9 @@
 
 ## Premise
 
-Provided are two simplified parts of the same application environment: A database and an API service.
+Provided are two simplified parts of the same application environment: A database dump and an API service. Your task is to automate setting up the development environment in a reliable and testable manner using "infrastructure as code" principles.
 
-Your task is to automate setting up the development environment in a reliable and testable manner.
-
-The goal is to end up with a command - or a limited set of commands - that would install the different environments given any specifications described.
-
-The code should come with instructions on how to run it and deploy it to arbitrary targets.
+The goal is to end up with a command — or a limited set of commands — that would install the different environments. The code should come with instructions on how to run it and deploy it to arbitrary targets; It could be deployed locally, towards physical machines, or towards virtual nodes in the cloud.
 
 ## Running the database
 
