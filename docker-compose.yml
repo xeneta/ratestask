@@ -1,0 +1,11 @@
+version: '2'
+services:
+  rateserve:
+    build: ./rates
+    restart: always
+    ports:
+      - "3000:3000"
+  ratestask:
+    build: ./db
+    ports:
+      - "5432:5432"

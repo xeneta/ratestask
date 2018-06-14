@@ -53,14 +53,34 @@ The API should now be running on [http://localhost:3000](http://localhost:3000).
 
 ### 3. Test the application
 
+Get average rates between port codes.
 ```
-curl http://localhost:3000/
+curl "http://127.0.0.1:3000/rates?date_from=2016-01-01&date_to=2016-01-31&orig_code=CNGGZ&dest_code=EETLL"
+```
+
+Get average rates between region slugs.
+```
+curl "http://127.0.0.1:3000/rates?date_from=2016-01-01&date_to=2016-01-31&orig_slug=china_main&dest_slug=scandinavia"
 ```
 
 The output should be something like this:
 
 ```
-{"temporary": "value"}
+{
+   "rates" : [
+      {
+         "count" : 3,
+         "day" : "2016-01-31",
+         "price" : 1154.33333333333
+      },
+      {
+         "count" : 3,
+         "day" : "2016-01-30",
+         "price" : 1154.33333333333
+      },
+      ....
+   ]
+}
 ```
 
 ## Extra details
