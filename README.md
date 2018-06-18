@@ -4,7 +4,7 @@
 
 Provided are two simplified parts of the same application environment: A database dump and an API service. Your task is to automate setting up the development environment in a reliable and testable manner using "infrastructure as code" principles.
 
-The goal is to end up with a command — or a limited set of commands — that would install the different environments and run them using containers. The code should come with instructions on how to run it and deploy it to arbitrary targets; It could be deployed locally, towards physical machines, or towards virtual nodes in the cloud.
+The goal is to end up with a limited set of commands that would install the different environments and run them using containers. You can use any software that you find suitable for the task. The code should come with instructions on how to run it and deploy it to arbitrary targets; whether it is deployed locally, towards physical machines, or towards virtual nodes in the cloud.
 
 ## Running the database
 
@@ -83,18 +83,16 @@ The output should be something like this:
 * Keep your solution in a Version Control System of your
   choice. *Provide the solution as a public repository that can be easily cloned by our development team.*
 
-* To allow this to sanely run on any machine, it should be possible to provide target or configuration overrides.
+* The configuration file `rates/config.py` has some defaults that will most likely change depending on the solution. It would be beneficial to have a way of more dynamically pass in config values.
 
 * List and describe the tool(s) used, and why they were chosen for the task.
-
-* The configuration file `rates/config.py` has some defaults that will most likely change depending on the solution. It would be beneficial to have a way of more dynamically pass in config values.
 
 * Provide any instructions needed to run the automation solution in `README.md`.
 
 * If you have any questions, please don't hesitate to contact us at tech-recruitment@xeneta.com
 
 # Theoretical section
-In this section we are seeking high-level answers, using a couple of paragraphs for each question.
+In this section we are seeking high-level answers, use a maximum of couple of paragraphs to answer the questions.
 
 ## Extended service
 
@@ -102,13 +100,13 @@ Imagine that for providing data to fuel this service, you need to receive and in
 
 Both the incoming data updates and requests for data can be highly sporadic - there might be large periods without much activity, followed by periods of heavy activity.
 
-Being a paid service, high availability is very much a requirement.
+High availability is a strict requirement from the customers.
 
 * How would you design the system?
 * How would you set up monitoring to identify bottlenecks as the load grows?
 * How can those bottlenecks be addressed in the future?
 
-Provide a high-level diagram, along with a few paragraphs describing the choices you've made and what factors do you need to take into consideration.
+Provide a high-level diagram, along with a paragraphs describing the choices you've made and what factors do you need to take into consideration.
 
 ## Additional questions
 
