@@ -127,7 +127,7 @@ you need to take into consideration?
 
 * You are encouraged to modify or extend the database schema if you think a different model fits task better.
 
-* If you have any questions, don't hesitate to ask us.
+* If you have any questions, please don't hesitate to contact us at tech-recruitment@xeneta.com
 
 * We would like your feedback - Let us know how much time you spent on
   the task or about any difficulties you run into.
