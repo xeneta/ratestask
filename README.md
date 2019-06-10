@@ -99,7 +99,7 @@ destination_code, price*
 
 Extend that API endpoint so that it could accept prices in
 different currencies. Convert into USD before
-saving. [https://openexchangerates.org/](Openexchangerates) provides
+saving. [https://openexchangerates.org/](https://openexchangerates.org/) provides
 a free API for retrieving currency exchange information.
 
 
