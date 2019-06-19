@@ -7,46 +7,49 @@ database dump is provided that includes the following information:
 
 Information about ports, including:
 
-* 5-character Port Code
-* Port Name
-* Slug that describes which Region does the port belong in
+* 5-character port code
+* Port name
+* Slug describing which region the port belongs to
 
 ## Regions
 
-A hierarchy of Regions, including:
+A hierarchy of regions, including:
 
-* Slug - a machine-readable form of the Region name
-* The name of the Region
-* Slug that describes which parent Region does the Region belong in
+* Slug - a machine-readable form of the region name
+* The name of the region
+* Slug describing which parent region the region belongs to
 
 ## Prices
 
 Individual daily prices between ports, in USD.
 
-* 5-character Origin Port Code
-* 5-character Destination Port Code
-* The day on which the price is valid on
+* 5-character origin port code
+* 5-character destination port code
+* The day for which the price is valid
 * The price in USD
 
 # Assignment
 
-Develop an HTTP-based API capable of executing the tasks described
-below. Our stack is based on Flask, but you are free to choose
-anything you like. All data returned is expected to be in JSON format.
+1. Develop an HTTP-based API capable of handling the GET and POST requests described
+below in [GET Request Task](#get-request-task) and [POST Request Task](#post-request-task). Our stack is based on Flask, but you are free to choose
+anything you like. All data returned is expected to be in JSON format. Please demonstrate your knowledge of SQL (as opposed to using ORM querying tools) in at least one part.
+2. Describe the system you would design for handling the [Batch Processing Task](#batch-processing-task).
 
-Please display us your knowledge of raw SQL (as opposed to using ORM querying tools) in at least one part.
 
-
-## GET requirements
+## GET Request Task
 
 ### Part 1
 
 Implement an API endpoint that takes the following parameters:
-*date_from, date_to, origin, destination* and returns a list with the
-average prices for each day on a route between Port Codes *origin* and
-*destination*. Both *origin, destination* params accept either Port
-Codes or Region slugs, making it possible to query for average prices
-per day between geographic groups of ports.
+
+* date_from
+* date_to
+* origin
+* destination
+
+and returns a list with the average prices for each day on a route between port codes *origin* and *destination*.
+
+Both the *origin, destination* params accept either port codes or region slugs, making it possible to query for average prices per day between geographic groups of ports.
 
     curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
 
@@ -86,13 +89,18 @@ on which there are less than 3 prices in total.
         ...
     ]
 
-## POST requirements
+## POST Request Task
 
 ### Part 1
 
 Implement an API endpoint where you can upload a price, including
-the following parameters: *date_from, date_to, origin_code,
-destination_code, price*
+the following parameters:
+
+* date_from
+* date_to
+* origin_code,
+* destination_code
+* price
 
 
 ### Part 2
@@ -103,13 +111,9 @@ saving. [https://openexchangerates.org/](https://openexchangerates.org/) provide
 a free API for retrieving currency exchange information.
 
 
-## Batch processing
+## Batch Processing Task
 
-Imagine you need to receive and update big batches of new prices,
-ranging within tens of thousands of items, conforming to a similar
-format. Describe, using a couple of paragraphs, how would you design
-the system to be able to handle those requirements. What factors do
-you need to take into consideration?
+Imagine you need to receive and update batches of tens of thousands of new prices, conforming to a similar format. Describe, using a couple of paragraphs, how you would design the system to be able to handle those requirements. Which factors do you need to take into consideration?
 
 
 # Extra details
@@ -122,21 +126,20 @@ you need to take into consideration?
 
 * Ensure the API handles errors and edge cases properly.
 
-* Use dates in YYYY-MM-DD format for the API. There is no need of more
+* Use dates in YYYY-MM-DD format for the API. There is no need for more
   complicated date processing.
 
-* You are encouraged to modify or extend the database schema if you think a different model fits task better.
+* You are encouraged to modify or extend the database schema if you think a different model fits the task better.
 
 * If you have any questions, please don't hesitate to contact us at tech-recruitment@xeneta.com
 
-* We would like your feedback - Let us know how much time you spent on
-  the task or about any difficulties you run into.
+* Please let us know how much time you spent on the task, and of any difficulties that you ran into.
 
 
 # Initial setup
 
 We have provided a simple Docker setup for you, which will start a
-Postgres instance populated with the assignment data. You don't have
+PostgreSQL instance populated with the assignment data. You don't have
 to use it, but you might find it convenient. If you decide to use
 something else, make sure to include instructions on how to set it up.
 
@@ -153,7 +156,7 @@ start in the following way:
 docker run -p 0.0.0.0:5432:5432 --name ratestask ratestask
 ```
 
-You can connect to the exposed Postgres instance on the address
+You can connect to the exposed PostgreSQL instance on the address
 provided by docker, usually *172.17.0.1*. It is started with the
 default user 'postgres' and no password.
 
@@ -163,4 +166,4 @@ psql -h 172.17.0.1 -U postgres
 
 Keep in mind that any data written in the Docker container will
 disappear when it shuts down. The next time you run it, it will start
-with a clear state.
+with a clean state.
