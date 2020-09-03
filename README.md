@@ -157,7 +157,7 @@ docker run -p 0.0.0.0:5432:5432 --name ratestask ratestask
 ```
 
 You can connect to the exposed Postgres instance on the Docker host IP address,
-usually *172.0.0.1* or *172.17.0.1*. It is started with the default user `postgres` and `ratestask` password.
+usually *127.0.0.1* or *172.17.0.1*. It is started with the default user `postgres` and `ratestask` password.
 
 ```bash
 PGPASSWORD=ratestask psql -h 127.0.0.1 -U postgres
