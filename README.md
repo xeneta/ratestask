@@ -51,7 +51,7 @@ and returns a list with the average prices for each day on a route between port 
 
 Both the *origin, destination* params accept either port codes or region slugs, making it possible to query for average prices per day between geographic groups of ports.
 
-    curl http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
+    curl "http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main"
 
     [
         {
@@ -71,7 +71,7 @@ Both the *origin, destination* params accept either port codes or region slugs, 
 Make a second API endpoint return an empty value (JSON null) for days
 on which there are less than 3 prices in total.
 
-    curl http://127.0.0.1/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main
+    curl "http://127.0.0.1/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main"
 
     [
         {
