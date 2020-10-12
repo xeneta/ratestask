@@ -30,15 +30,19 @@ Individual daily prices between ports, in USD.
 
 # Assignment
 
-1. Develop an HTTP-based API capable of handling the GET and POST requests described
+The task ahead of you comprises 2 main subtasks. Please read both of them carefully and remember to work on both.
+
+1. Develop an [HTTP-based API](#task-1-http-based-api) capable of handling the GET and POST requests described
 below in [GET Request Task](#get-request-task) and [POST Request Task](#post-request-task). Our stack is based on Flask, but you are free to choose
 anything you like. All data returned is expected to be in JSON format. Please demonstrate your knowledge of SQL (as opposed to using ORM querying tools) in at least one part.
-2. Describe the system you would design for handling the [Batch Processing Task](#batch-processing-task).
+2. Describe the system you would design for handling the [Batch Processing Task](#task-2-batch-processing-task).
 
 
-## GET Request Task
+## Task 1: HTTP-based API
 
-### Part 1
+### GET Request Task
+
+#### Part 1
 
 Implement an API endpoint that takes the following parameters:
 
@@ -66,7 +70,7 @@ Both the *origin, destination* params accept either port codes or region slugs, 
     ]
 
 
-### Part 2
+#### Part 2
 
 Make a second API endpoint return an empty value (JSON null) for days
 on which there are less than 3 prices in total.
@@ -89,9 +93,9 @@ on which there are less than 3 prices in total.
         ...
     ]
 
-## POST Request Task
+### POST Request Task
 
-### Part 1
+#### Part 1
 
 Implement an API endpoint where you can upload a price, including
 the following parameters:
@@ -103,7 +107,7 @@ the following parameters:
 * price
 
 
-### Part 2
+#### Part 2
 
 Extend that API endpoint so that it could accept prices in
 different currencies. Convert into USD before
@@ -111,7 +115,7 @@ saving. [https://openexchangerates.org/](https://openexchangerates.org/) provide
 a free API for retrieving currency exchange information.
 
 
-## Batch Processing Task
+## Task 2: Batch Processing Task
 
 Imagine you need to receive and update batches of tens of thousands of new prices, conforming to a similar format. Describe, using a couple of paragraphs, how you would design the system to be able to handle those requirements. Which factors do you need to take into consideration?
 
