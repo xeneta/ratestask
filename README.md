@@ -28,21 +28,10 @@ Individual daily prices between ports, in USD.
 * The day for which the price is valid
 * The price in USD
 
-# Assignment
+# Assignment: HTTP-based API
 
-The task ahead of you comprises 2 main subtasks. Please read both of them carefully and remember to work on both.
+Develop an [HTTP-based API](#task-1-http-based-api) capable of handling the GET request described below. Our stack is based on Flask, but you are free to choose any Python framework you like. All data returned is expected to be in JSON format. Please demonstrate your knowledge of SQL (as opposed to using ORM querying tools).
 
-1. Develop an [HTTP-based API](#task-1-http-based-api) capable of handling the GET and POST requests described
-below in [GET Request Task](#get-request-task) and [POST Request Task](#post-request-task). Our stack is based on Flask, but you are free to choose
-anything you like. All data returned is expected to be in JSON format. Please demonstrate your knowledge of SQL (as opposed to using ORM querying tools) in at least one part.
-2. Describe the system you would design for handling the [Batch Processing Task](#task-2-batch-processing-task).
-
-
-## Task 1: HTTP-based API
-
-### GET Request Task
-
-#### Part 1
 
 Implement an API endpoint that takes the following parameters:
 
@@ -51,31 +40,11 @@ Implement an API endpoint that takes the following parameters:
 * origin
 * destination
 
-and returns a list with the average prices for each day on a route between port codes *origin* and *destination*.
+and returns a list with the average prices for each day on a route between port codes *origin* and *destination*. Return an empty value (JSON null) for days on which there are less than 3 prices in total.
 
 Both the *origin, destination* params accept either port codes or region slugs, making it possible to query for average prices per day between geographic groups of ports.
 
     curl "http://127.0.0.1/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main"
-
-    [
-        {
-            "day": "2016-01-01",
-            "average_price": 129
-        },
-        {
-            "day": "2016-01-02",
-            "average_price": 139
-        },
-        ...
-    ]
-
-
-#### Part 2
-
-Make a second API endpoint return an empty value (JSON null) for days
-on which there are less than 3 prices in total.
-
-    curl "http://127.0.0.1/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main"
 
     [
         {
@@ -93,34 +62,16 @@ on which there are less than 3 prices in total.
         ...
     ]
 
-### POST Request Task
-
-#### Part 1
-
-Implement an API endpoint where you can upload a price, including
-the following parameters:
-
-* date_from
-* date_to
-* origin_code,
-* destination_code
-* price
-
-
-#### Part 2
-
-Extend that API endpoint so that it could accept prices in
-different currencies. Convert into USD before
-saving. [https://openexchangerates.org/](https://openexchangerates.org/) provides
-a free API for retrieving currency exchange information.
-
-
-## Task 2: Batch Processing Task
-
-Imagine you need to receive and update batches of tens of thousands of new prices, conforming to a similar format. Describe, using a couple of paragraphs, how you would design the system to be able to handle those requirements. Which factors do you need to take into consideration?
-
-
 # Extra details
+
+* It usually takes 2 - 6 hours to complete this task for a developer with 2+ years of experience in building APIs with Python and SQL.
+
+* Our key evaluation criteria:
+    - Ease of setup and testing
+    - Code clarity and simplicity
+    - Comments where appropriate
+    - Code organisation
+    - Tests
 
 * Keep your solution in a Version Control System of your
   choice. *Provide the solution as a public repository that can be
