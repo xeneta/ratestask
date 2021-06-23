@@ -86,7 +86,7 @@ Both the *origin, destination* params accept either port codes or region slugs, 
 
 * You are encouraged to modify or extend the database schema if you think a different model fits the task better.
 
-* If you have any questions, please don't hesitate to contact us at tech-recruitment@xeneta.com
+* If you have any questions, please don't hesitate to contact us
 
 * Please let us know how much time you spent on the task, and of any difficulties that you ran into.
 
