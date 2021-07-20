@@ -19,6 +19,9 @@ A hierarchy of regions, including:
 * The name of the region
 * Slug describing which parent region the region belongs to
 
+Note that a region can have both ports and regions as children, and the region
+tree does not have a fixed depth.
+
 ## Prices
 
 Individual daily prices between ports, in USD.
