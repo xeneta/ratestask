@@ -52,15 +52,15 @@ Both the *origin, destination* params accept either port codes or region slugs, 
     [
         {
             "day": "2016-01-01",
-            "average_price": 129
+            "average_price": 1112
         },
         {
             "day": "2016-01-02",
-            "average_price": null
+            "average_price": 1112
         },
         {
             "day": "2016-01-03",
-            "average_price": 215
+            "average_price": null
         },
         ...
     ]
