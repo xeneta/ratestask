@@ -56987,3 +56987,8 @@ ALTER TABLE ONLY regions
 -- PostgreSQL database dump complete
 --
 
+-- Make Jan 3 have no prices at all
+DELETE FROM prices WHERE day = date'2016-01-03';
+-- Make Jan 4 have one price on CNSGH to GBFXT (grandchild of NE main)
+DELETE FROM prices WHERE day = date'2016-01-04';
+INSERT INTO prices VALUES ('CNSGH', 'GBFXT', date'2016-01-04', 100500);
