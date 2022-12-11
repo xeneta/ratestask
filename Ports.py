@@ -4,7 +4,6 @@ import constant
 class PortsCollection:
     def __init__(self):
         self.ports = list()
-        self.parents = dict()
 
     def set_port_data(self, regions):
         query = '''
@@ -33,7 +32,3 @@ class PortsCollection:
         final_parents = list(relation[child_name])
         final_parents = [parent for parent in final_parents if parent != None]
         return final_parents
-
-regions = PortsCollection()
-regions.set_port_data(['baltic', 'northern_europe'])
-print(regions.ports)

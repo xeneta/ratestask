@@ -24,15 +24,10 @@ class RegionCollection:
             return set()
         return set(self.parents[p] + [b for a in self.parents[p] for b in self.all_parents(a)])
 
-    def get_parents(self, child_name):
+    def get_childrens(self, child_name):
         relation = {p: self.all_parents(p) for p in self.region}
         if child_name not in relation:
-            return []
-        final_parents = list(relation[child_name])
-        final_parents = [parent for parent in final_parents if parent != None]
-        return final_parents
-
-regions = RegionCollection()
-regions.set_region_data()
-print(regions.get_parents('baltic'))
+            return list()
+        final_children = [k for k, v in relation.items() if child_name in v]
+        return final_children
 
