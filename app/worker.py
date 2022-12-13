@@ -37,7 +37,7 @@ def parameter_value_compiler(extracted_params):
     return extracted_params, None
 
 
-def get_average_price(parameters, region_data_object): 
+def get_average_price(parameters, region_data_object, ports_data_object): 
     '''Function to find the average price'''
     # find all the parent regions of the region
     # and find all the ports for the regions for start and destination ports respectively
@@ -48,27 +48,31 @@ def get_average_price(parameters, region_data_object):
         return None, "No origin data found"
     if is_port == False:
         port_object = Ports.PortsCollection()
-        origins.append(parameters['origin'])
+        # origins.append(parameters['origin'])
         port_object.set_port_data(origins)
         # getting all origin ports
         origins = port_object.ports
-        
+    elif origins[0] not in ports_data_object.ports_cache:
+        return None, "Origin is invalid"
+
 
     destinations, is_port = get_parents(parameters['destination'], region_data_object) 
     if len(destinations) == 0:
         return None, "No destination data found"
     if is_port == False:
         port_object = Ports.PortsCollection()
-        destinations.append(parameters['destination'])
+        # destinations.append(parameters['destination'])
         port_object.set_port_data(destinations)
         destinations = port_object.ports
+    elif destinations[0] not in ports_data_object.ports_cache:
+        return None, "Destination is invalid"
     # find average price using sql query 
 
     # converting the ports list to string
     origins_as_string = ", ".join(["'" + origin + "'" for origin in origins])
     destinations_as_string = ", ".join(["'" + destination + "'" for destination in destinations])
     average_price_query_result = average_price_query(origins_as_string, destinations_as_string, parameters['date_from'],parameters['date_to'] , 3)
-    return [i[0] for i in average_price_query_result], ""
+    return [i[0] for i in average_price_query_result], None
 
 def get_parents(name, region_data_object):
     # check if its a port code
@@ -79,6 +83,7 @@ def get_parents(name, region_data_object):
         is_port = True
     else:
         code = region_data_object.get_childrens(name)
+        code.append(name)
 
     return code, is_port
 

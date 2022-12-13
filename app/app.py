@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import logging
 import worker
-import Regions
+import Regions, Ports
 
 
 
@@ -10,6 +10,8 @@ app.cache = {}
 
 app.cache['Regions'] = Regions.RegionCollection() 
 app.cache['Regions'].set_region_data()
+app.cache['Ports'] = Ports.PortsCollection()
+app.cache["Ports"].set_ports_cache()
 
 
 @app.route('/')
@@ -28,10 +30,12 @@ def rates():
     if error != None:
         return error, 400
     
-    final_response, error = worker.get_average_price(final_params, app.cache['Regions'])
+    final_response, error = worker.get_average_price(final_params, app.cache['Regions'], app.cache["Ports"])
+    if error != None:
+        return error, 400
 
     return jsonify(final_response), 200
 
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port = 5001, debug=True)
+    app.run(host = "0.0.0.0", port = 5001, debug=False)

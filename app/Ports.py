@@ -4,6 +4,19 @@ import constant
 class PortsCollection:
     def __init__(self):
         self.ports = list()
+        self.ports_cache = list()
+
+    def set_ports_cache(self):
+        query = '''
+        SELECT code FROM public.ports
+        '''
+
+        handle = db_handler.DbHandle(constant.HOST, constant.PORT, constant.DATABASE, constant.USER, constant.PASSWD)
+        handle.connect_db()
+        query_result = handle.execute_query(query)
+        handle.close_db_connection()
+
+        self.ports_cache = [code[0] for code in query_result]
 
     def set_port_data(self, regions):
         query = '''
