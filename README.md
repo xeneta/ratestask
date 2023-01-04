@@ -65,16 +65,10 @@ Both the *origin, destination* params accept either port codes or region slugs, 
         ...
     ]
 
-# Extra details
+# Requirements
 
-* It usually takes 2 - 6 hours to complete this task for a developer with 2+ years of experience in building APIs with Python and SQL.
-
-* Our key evaluation criteria:
-    - Ease of setup and testing
-    - Code clarity and simplicity
-    - Comments where appropriate
-    - Code organisation
-    - Tests
+* Write the solution using Python and SQL, you can use an ORM but please
+  demonstrate some raw SQL
 
 * Keep your solution in a Version Control System of your
   choice. *Provide the solution as a public repository that can be
@@ -86,6 +80,17 @@ Both the *origin, destination* params accept either port codes or region slugs, 
 
 * Use dates in YYYY-MM-DD format for the API. There is no need for more
   complicated date processing.
+
+# Extra details
+
+* It usually takes 2 - 6 hours to complete this task for a developer with 2+ years of experience in building APIs with Python and SQL.
+
+* Our key evaluation criteria:
+    - Ease of setup and testing
+    - Code clarity and simplicity
+    - Comments where appropriate
+    - Code organisation
+    - Tests
 
 * You are encouraged to modify or extend the database schema if you think a different model fits the task better.
 
